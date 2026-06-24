@@ -1,0 +1,905 @@
+create table Customers(CustomerId NUMBER PRIMARY KEY,Name Varchar(100),DOB DATE,Balance NUMBER,LastModified DATE);
+
+CREATE TABLE Accounts (
+    AccountID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    AccountType VARCHAR2(20),
+    Balance NUMBER,
+    LastModified DATE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+CREATE TABLE Transactions (
+    TransactionID NUMBER PRIMARY KEY,
+    AccountID NUMBER,
+    TransactionDate DATE,
+    Amount NUMBER,
+    TransactionType VARCHAR2(10),
+    FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+CREATE TABLE Loans (
+    LoanID NUMBER PRIMARY KEY,
+    CustomerID NUMBER,
+    LoanAmount NUMBER,
+    InterestRate NUMBER,
+    StartDate DATE,
+    EndDate DATE,
+    FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+);
+
+CREATE TABLE Employees (
+    EmployeeID NUMBER PRIMARY KEY,
+    Name VARCHAR2(100),
+    Position VARCHAR2(50),
+    Salary NUMBER,
+    Department VARCHAR2(50),
+    HireDate DATE
+);
+
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (2, 'Priya Reddy', TO_DATE('1998-08-21', 'YYYY-MM-DD'), 8000, SYSDATE);
+
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (1, 'Rahul Sharma', TO_DATE('1958-03-12', 'YYYY-MM-DD'), 15000, SYSDATE);
+
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (3, 'Amit Verma', TO_DATE('1960-01-15', 'YYYY-MM-DD'), 25000, SYSDATE);
+
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (4, 'Sneha Patel', TO_DATE('1995-07-11', 'YYYY-MM-DD'), 5000, SYSDATE);
+
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (5, 'Kiran Kumar', TO_DATE('1955-11-20', 'YYYY-MM-DD'), 12000, SYSDATE);
+
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (6, 'Anjali Singh', TO_DATE('2000-05-14', 'YYYY-MM-DD'), 9500, SYSDATE);
+
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (8, 'Neha Joshi', TO_DATE('1963-04-25', 'YYYY-MM-DD'), 3000, SYSDATE);
+
+INSERT INTO Customers (CustomerID, Name, DOB, Balance, LastModified)
+VALUES (7, 'Vikram Rao', TO_DATE('1972-09-17', 'YYYY-MM-DD'), 18000, SYSDATE);
+
+select * from CUSTOMERS;
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (1, 1, 'Savings', 15000, SYSDATE);
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (2, 2, 'Checking', 8000, SYSDATE);
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (3, 3, 'Savings', 25000, SYSDATE);
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (4, 4, 'Checking', 5000, SYSDATE);
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (5, 5, 'Savings', 12000, SYSDATE);
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (6, 6, 'Checking', 9500, SYSDATE);
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (7, 7, 'Savings', 18000, SYSDATE);
+
+INSERT INTO Accounts (AccountID, CustomerID, AccountType, Balance, LastModified)
+VALUES (8, 8, 'Checking', 3000, SYSDATE);
+
+select * from Accounts;
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (1, 1, SYSDATE-5, 5000, 'Deposit');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (2, 2, SYSDATE-3, 2000, 'Withdrawal');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (3, 3, SYSDATE-2, 3000, 'Deposit');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (5, 5, SYSDATE-7, 2500, 'Deposit');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (6, 6, SYSDATE-4, 4000, 'Withdrawal');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (4, 4, SYSDATE-10, 1000, 'Withdrawal');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (9, 1, SYSDATE-12, 1000, 'Withdrawal');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (8, 8, SYSDATE-8, 500, 'Withdrawal');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (7, 7, SYSDATE-1, 3500, 'Deposit');
+
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (10, 3, SYSDATE-15, 7000, 'Deposit');
+
+select * from TRANSACTIONS;
+
+INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+VALUES (1, 1, 50000, 8, SYSDATE-200, SYSDATE+20);
+
+INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+VALUES (3, 3, 70000, 7, SYSDATE-400, SYSDATE+180);
+
+INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+VALUES (2, 2, 30000, 10, SYSDATE-100, SYSDATE+15);
+
+INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+VALUES (4, 4, 20000, 9, SYSDATE-80, SYSDATE+25);
+
+INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+VALUES (5, 5, 100000, 6, SYSDATE-500, SYSDATE+365);
+
+INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+VALUES (8, 8, 15000, 12, SYSDATE-60, SYSDATE+5);
+
+INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+VALUES (6, 6, 25000, 11, SYSDATE-150, SYSDATE+10);
+
+INSERT INTO Loans (LoanID, CustomerID, LoanAmount, InterestRate, StartDate, EndDate)
+VALUES (7, 7, 45000, 8, SYSDATE-300, SYSDATE+300);
+
+select * from Loans;
+
+INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+VALUES (1, 'Arjun Mehta', 'Manager', 80000, 'HR', TO_DATE('2015-06-12', 'YYYY-MM-DD'));
+
+INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+VALUES (2, 'Pooja Sharma', 'Developer', 65000, 'IT', TO_DATE('2018-03-10', 'YYYY-MM-DD'));
+
+INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+VALUES (3, 'Ravi Kumar', 'Analyst', 55000, 'Finance', TO_DATE('2019-07-21', 'YYYY-MM-DD'));
+
+INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+VALUES (4, 'Meera Nair', 'Developer', 70000, 'IT', TO_DATE('2020-01-15', 'YYYY-MM-DD'));
+
+INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+VALUES (6, 'Kavya Reddy', 'HR Executive', 50000, 'HR', TO_DATE('2021-09-25', 'YYYY-MM-DD'));
+
+INSERT INTO Employees (EmployeeID, Name, Position, Salary, Department, HireDate)
+VALUES (5, 'Suresh Patel', 'Manager', 90000, 'Finance', TO_DATE('2014-05-18', 'YYYY-MM-DD'));
+
+ALTER TABLE Customers
+ADD IsVIP VARCHAR2(5);
+
+--Control Structure: Scenario-1
+
+DECLARE 
+    CURSOR c_customers IS
+       SELECT CustomerId,Name,DOB
+       FROM CUSTOMERS;
+    v_age NUMBER;
+BEGIN
+    FOR cust_rec IN c_customers LOOP
+        v_age:=trunc(months_between(SYSDATE,cust_rec.DOB)/12);
+        IF v_age>60 THEN
+            UPDATE LOANS
+            SET INTERESTRATE=INTERESTRATE-(INTERESTRATE*0.1)
+            where CustomerID=cust_rec.CustomerID;
+            DBMS_OUTPUT.PUT_LINE(cust_rec.Name || '(Age: ' || v_age || ')-1% discount is applied');
+        end IF;
+    end LOOP;
+    commit;
+end;
+/
+
+--scenario-2
+
+SET SERVEROUTPUT ON;
+DECLARE
+    CURSOR c_customers IS
+        SELECT CustomerID,Name,Balance
+        FROM Customers;
+BEGIN
+    FOR cust_rec IN c_customers LOOP
+        IF cust_rec.Balance>10000 THEN
+            UPDATE Customers
+            SET IsVIP='TRUE'
+            WHERE CustomerID=cust_rec.CustomerID;
+            DBMS_OUTPUT.PUT_LINE(cust_rec.Name || ' (Balance: ' || cust_rec.Balance || ') - Promoted to VIP.');
+        ELSE
+            UPDATE Customers
+            SET IsVIP='FALSE'
+            WHERE CustomerID=cust_rec.CustomerID;
+        END IF;
+    END LOOP;
+    COMMIT;
+END;
+/
+
+select * from CUSTOMERS;
+
+--scenario-3
+
+SET SERVEROUTPUT ON;
+DECLARE
+    CURSOR c_due IS
+        SELECT L.LoanID,L.CustomerID,c.Name,L.EndDate,L.LoanAmount
+        from LOANS L
+        join CUSTOMERS c ON L.CustomerID=c.CustomerID
+        WHERE L.EndDate between SYSDATE and SYSDATE+30;
+BEGIN
+    for loan_rec IN c_due LOOP
+        DBMS_OUTPUT.PUT_LINE('REMINDER:Dear ' || loan_rec.Name ||
+            ',your loan ID: ' || loan_rec.LoanID ||
+            ',Amount: ' || loan_rec.LoanAmount ||
+            ' is due on ' || TO_CHAR(loan_rec.EndDate, 'DD-MON-YYYY')
+        );
+    END LOOP;
+end;
+/
+
+--Error Handling: Scenario-1
+
+create or replace procedure SafeTransferFunds
+(
+    p_from_account IN NUMBER,
+    p_to_account in NUMBER,
+    p_amount in NUMBER
+) 
+IS
+  v_from_balance number;
+  e_insuff_funds exception;
+BEGIN
+    select Balance into v_from_balance
+    FROM Accounts
+    where AccountID=p_from_account
+    for update;
+    if v_from_balance<p_amount THEN
+       raise e_insuff_funds;
+    end if;
+    update Accounts
+    set Balance=Balance-p_amount,LastModified=SYSDATE
+    where AccountID=p_from_account;
+    update Accounts
+    set Balance=Balance+p_amount,LastModified=SYSDATE
+    where AccountID=p_to_account;
+    COMMIT;
+    DBMS_OUTPUT.PUT_LINE('Transfer successful: ' || p_amount ||
+        ' moved from Account ' || p_from_account ||
+        ' to Account ' || p_to_account);
+exception
+    when e_insuff_funds then 
+        rollback;
+        DBMS_OUTPUT.PUT_LINE('ERROR: Insufficient funds in Account ' || p_from_account);
+    when no_data_found then 
+        rollback;
+        DBMS_OUTPUT.PUT_LINE('ERROR: One of the account IDs does not exist.');
+    when others then 
+        rollback;
+        DBMS_OUTPUT.PUT_LINE('ERROR: Transfer failed: ' || SQLERRM);
+end SafeTransferFunds;
+/
+SET SERVEROUTPUT on;
+BEGIN
+    SafeTransferFunds(1,2,200);
+end;
+/
+set SERVEROUTPUT on;
+BEGIN
+    SafeTransferFunds(1,2,999999);
+end;
+/
+
+--scenario-2
+
+create or replace procedure UpdateSalary
+(
+    e_id in number,
+    e_percent in NUMBER  
+)
+is
+   e_exist number;
+BEGIN
+    select count(*) into e_exist
+    from Employees
+    where EmployeeID=e_id;
+    if e_exist=0 THEN
+       raise_application_error(-2000,'Employee ID ' || e_id || ' does not exist.');
+    end if;
+    update Employees
+    set Salary=(Salary*e_percent/100)
+    where EmployeeID=e_id;
+    commit;
+    DBMS_OUTPUT.PUT_LINE('Salary updated successfully for Employee ID: ' || e_id);
+exception
+    when others then 
+       rollback;
+       DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
+end UpdateSalary;
+/
+set SERVEROUTPUT on
+begin 
+    UpdateSalary(1,15);
+end;
+/
+
+--scenario-3
+
+create or replace procedure AddNewCustomer
+(
+    p_cus_id in NUMBER,
+    p_name in VARCHAR2,
+    p_DOB in DATE,
+    p_balance in NUMBER
+)
+IS
+    v_exist NUMBER;
+BEGIN
+    SELECT count(*) into v_exist
+    from Customers
+    where CustomerID=p_cus_id;
+    if v_exist>0 THEN
+       RAISE_APPLICATION_ERROR(-20002,
+            'Customer ID ' || p_cus_id || ' already exists.');
+    end if;
+    INSERT INTO Customers(CustomerID,Name,DOB,Balance,LastModified)
+    VALUES(p_cus_id,p_name,p_DOB,p_balance,SYSDATE);
+    commit;
+    DBMS_OUTPUT.PUT_LINE('Customer added successfully: ' || p_name);
+exception
+    when others THEN
+        rollback;
+        DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
+end AddNewCustomer;
+/
+set SERVEROUTPUT on
+BEGIN
+    AddNewCustomer(9,'Kiran Rao',TO_DATE('1992-04-12','YYYY-MM-DD'),5000);
+end;
+/
+
+--Stored Procedure: Scenario-1
+
+create or replace procedure ProcessMonthlyInterest
+is
+   v_count number:=0;
+BEGIN
+    update Accounts
+    set Balance=Balance+(Balance*0.01),LastModified=SYSDATE
+    WHERE AccountType='Savings';
+    v_count:=sql%rowcount;
+    COMMIT;
+    DBMS_OUTPUT.PUT_LINE('Monthly interest applied to ' || v_count || ' savings accounts.');
+exception
+    when others then
+        rollback;
+        DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
+end ProcessMonthlyInterest;
+/
+set SERVEROUTPUT on
+BEGIN
+    ProcessMonthlyInterest;
+end;
+/
+
+--scenario-2
+
+create or replace procedure UpdateEmployeeBonus
+(
+    p_department in varchar2,
+    p_bonus_per in number
+)
+is
+   v_count number:=0;
+BEGIN
+    update Employees
+    set Salary=Salary+(Salary*p_bonus_per/100)
+    where Department=p_department;
+    v_count:=sql%rowcount;
+    if v_count=0 then
+        DBMS_OUTPUT.PUT_LINE('No employees found in department: ' || p_department);
+    else 
+        commit;
+        DBMS_OUTPUT.PUT_LINE(v_count || ' employees in ' || p_department ||
+            ' received a ' || p_bonus_per || '% bonus.');
+    end if;
+exception
+    when others THEN
+        rollback;
+        DBMS_OUTPUT.PUT_LINE('ERROR: ' || SQLERRM);
+end UpdateEmployeeBonus;
+/
+set SERVEROUTPUT on
+BEGIN
+    UpdateEmployeeBonus('IT',5);
+end;
+/
+
+--scenario-3
+
+create or replace procedure TransferFunds
+(
+    p_from_account IN NUMBER,
+    p_to_account in NUMBER,
+    p_amount in NUMBER
+) 
+IS
+  v_from_balance number;
+  e_insuff_funds exception;
+BEGIN
+    select Balance into v_from_balance
+    FROM Accounts
+    where AccountID=p_from_account
+    for update;
+    if v_from_balance<p_amount THEN
+       raise e_insuff_funds;
+    end if;
+    update Accounts
+    set Balance=Balance-p_amount,LastModified=SYSDATE
+    where AccountID=p_from_account;
+    update Accounts
+    set Balance=Balance+p_amount,LastModified=SYSDATE
+    where AccountID=p_to_account;
+    COMMIT;
+    DBMS_OUTPUT.PUT_LINE('Transfer successful: ' || p_amount ||
+        ' moved from Account ' || p_from_account ||
+        ' to Account ' || p_to_account);
+exception
+    when e_insuff_funds then 
+        rollback;
+        DBMS_OUTPUT.PUT_LINE('ERROR: Insufficient funds in Account ' || p_from_account);
+    when no_data_found then 
+        rollback;
+        DBMS_OUTPUT.PUT_LINE('ERROR: One of the account IDs does not exist.');
+    when others then 
+        rollback;
+        DBMS_OUTPUT.PUT_LINE('ERROR: Transfer failed: ' || SQLERRM);
+end TransferFunds;
+/
+SET SERVEROUTPUT on;
+begin 
+    TransferFunds(1,2,300);
+end;
+/
+
+--Functions: Scenario-1
+
+create or replace function CalculateAge
+(
+    p_DOB in DATE
+)
+return NUMBER
+is
+   v_age NUMBER;
+BEGIN
+    v_age:=trunc(months_between(SYSDATE,p_DOB)/12);
+    return v_age;
+end CalculateAge;
+/
+set SERVEROUTPUT on;
+DECLARE
+    v_age NUMBER;
+BEGIN
+    v_age:=CalculateAge(TO_DATE('1990-07-20', 'YYYY-MM-DD'));
+    DBMS_OUTPUT.PUT_LINE('Age: ' || v_age);
+end;
+/
+
+--scenario-2
+
+create or replace function CalculateMaonthlyInstallment
+(
+    p_loan_amount in number,
+    p_annual_rate in number,
+    p_years in number
+)
+return NUMBER
+IS
+   v_monthly_rate number;
+   v_num_payments number;
+   v_emi number;
+BEGIN
+    v_monthly_rate:=(p_annual_rate/100)/12;
+    v_num_payments:=p_years*12;
+    if v_monthly_rate=0 THEN
+        v_emi:=p_loan_amount/v_num_payments;
+    else 
+        v_emi:=(p_loan_amount * v_monthly_rate *
+                  POWER(1 + v_monthly_rate, v_num_payments)) /
+                 (POWER(1 + v_monthly_rate, v_num_payments) - 1);
+    end if;
+    return round(v_emi,2);
+end CalculateMaonthlyInstallment;
+/
+set SERVEROUTPUT on;
+DECLARE
+    v_emi NUMBER;
+BEGIN
+    v_emi:=CalculateMonthlyInstallment(500000,8.5,5);
+    DBMS_OUTPUT.PUT_LINE('Monthly Installment: Rs.' || v_emi);
+end;
+/
+
+--scenario-3
+
+CREATE OR REPLACE FUNCTION HasSufficientBalance 
+(
+    p_account_id IN NUMBER,
+    p_amount IN NUMBER
+)
+RETURN VARCHAR2
+IS
+    v_balance NUMBER;
+BEGIN
+    SELECT Balance INTO v_balance
+    FROM Accounts
+    WHERE AccountID=p_account_id;
+    IF v_balance>=p_amount THEN
+        RETURN 'TRUE';
+    ELSE
+        RETURN 'FALSE';
+    END IF;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN 'FALSE';
+END HasSufficientBalance;
+/
+SET SERVEROUTPUT ON
+DECLARE
+    v_result VARCHAR2(5);
+BEGIN
+    v_result := HasSufficientBalance(3, 5000);
+    DBMS_OUTPUT.PUT_LINE('Sufficient balance? ' || v_result);
+END;
+/
+
+--Triggers: Scenario-1
+
+create or replace Trigger UpdateCustomerLastModified
+before update on Customers
+for each row
+BEGIN
+    :new.LastModified:=SYSDATE;
+end UpdateCustomerLastModified;
+/
+update Customers set Balance=1200 where CustomerID=1;
+select CustomerID,Name,LastModified from Customers where CustomerID=1;
+
+--scenario-2
+
+CREATE TABLE AuditLogg (
+    AuditID NUMBER GENERATED ALWAYS AS IDENTITY,
+    TransactionID NUMBER,
+    AccountID NUMBER,
+    Amount NUMBER,
+    TransactionType VARCHAR2(10),
+    LoggedOn DATE
+);
+CREATE OR REPLACE TRIGGER LogTransaction
+AFTER INSERT ON Transactions
+FOR EACH ROW
+BEGIN
+    INSERT INTO AuditLogg(TransactionID,AccountID,Amount,TransactionType,LoggedOn)
+    VALUES(:NEW.TransactionID,:NEW.AccountID,:NEW.Amount,:NEW.TransactionType,SYSDATE);
+END LogTransaction;
+/
+INSERT INTO Transactions (TransactionID, AccountID, TransactionDate, Amount, TransactionType)
+VALUES (5, 1, SYSDATE, 150, 'Deposit');
+SELECT * FROM AuditLogg;
+
+--scenario-3
+
+create or replace TRIGGER CheckTransactionRules
+before insert on Transactions
+for each ROW
+DECLARE
+    v_balance number;
+BEGIN
+    select Balance into v_balance
+    from Accounts
+    where AccountId=:NEW.AccountID;
+    IF :NEW.TransactionType='Deposit' and :NEW.Amount<=0 THEN
+        RAISE_APPLICATION_ERROR(-20003,'Deposit amount must be positive');
+    end if;
+    IF :NEW.TransactionType='Withdrawal' then
+        IF :NEW.Amount<= 0 THEN
+            RAISE_APPLICATION_ERROR(-20005,'Withdrawal amount must be positive');
+        ELSIF :NEW.Amount>v_balance THEN
+            RAISE_APPLICATION_ERROR(-20004,'Withdrawal amount exceeds account balance');
+        END IF;
+    END IF;
+end CheckTransactionRules;
+/
+INSERT INTO Transactions(TransactionID,AccountID,TransactionDate,Amount,TransactionType)
+VALUES (6,1,SYSDATE,-100,'Deposit');
+INSERT INTO Transactions(TransactionID,AccountID,TransactionDate,Amount,TransactionType)
+VALUES (9,1,SYSDATE,999999,'Withdrawal');
+
+--Cursur: Scenario-1
+
+set SERVEROUTPUT on;
+DECLARE
+    cursor c_mon_statements IS
+        select c.Name,t.TransactionID,t.Amount,t.TransactionType,t.TransactionDate
+        from TRANSACTIONS t
+        join Accounts a on t.AccountID=a.AccountId
+        join Customers c on a.CUSTOMERID=c.CUSTOMERID
+        where extract(month from t.TRANSACTIONDATE)=extract(month from sysdate)
+        and extract(year from t.TRANSACTIONDATE)=extract(year from sysdate)
+        order by c.Name,t.TRANSACTIONDATE;
+    v_cur_customer varchar2(100):=null;
+begin 
+    for stmt_rec in c_mon_statements loop
+        if v_cur_customer is null or v_cur_customer!=stmt_rec.Name then
+            DBMS_OUTPUT.PUT_LINE(' Statement for: ' || stmt_rec.Name );
+            v_cur_customer := stmt_rec.Name;
+        end if;
+        DBMS_OUTPUT.PUT_LINE('  TxnID: ' || stmt_rec.TransactionID ||
+            ' | ' || stmt_rec.TransactionType ||
+            ' | Amount: ' || stmt_rec.Amount ||
+            ' | Date: ' || TO_CHAR(stmt_rec.TransactionDate, 'DD-MON-YYYY'));
+    end loop;
+end;
+/
+
+--scenaro-2
+
+set SERVEROUTPUT on;
+declare 
+    cursor c_accounts is
+        select AccountID,Balance
+        from Accounts
+        for update;
+    v_annual_fee constant number:=50;
+BEGIN
+    for acc_rec in c_accounts loop
+       update Accounts
+       set Balance=Balance-v_annual_fee,LastModified=SYSDATE
+       where current of c_accounts;
+        DBMS_OUTPUT.PUT_LINE('Account ' || acc_rec.AccountID ||
+            ': Fee of ' || v_annual_fee || ' deducted. New balance: ' ||
+            (acc_rec.Balance - v_annual_fee));
+    end loop;
+    commit;
+end;
+/
+
+--scenario-3
+
+set SERVEROUTPUT on;
+declare 
+    cursor c_loans is
+        select LoanID,LoanAmount,INTERESTRATE
+        from loans
+        for update;
+    v_new_policy_rate CONSTANT number:=7;
+BEGIN
+    for loan_rec in c_loans LOOP
+        update Loans
+        set INTERESTRATE=v_new_policy_rate
+        where current of c_loans;
+        DBMS_OUTPUT.PUT_LINE('Loan ' || loan_rec.LoanID ||
+            ': Rate changed from ' || loan_rec.InterestRate ||
+            '% to ' || v_new_policy_rate || '%');
+    end loop;
+    commit;
+end;
+/
+
+--Packages: Scenario-1
+
+CREATE OR REPLACE PACKAGE CustomerManagement 
+AS
+    PROCEDURE AddCustomer
+    (
+        p_customer_id IN NUMBER,
+        p_name IN VARCHAR2,
+        p_dob IN DATE,
+        p_balance IN NUMBER
+    );
+    PROCEDURE UpdateCustomerDetails(
+        p_customer_id IN NUMBER,
+        p_name IN VARCHAR2,
+        p_balance IN NUMBER
+    );
+    FUNCTION GetCustomerBalance(p_customer_id IN NUMBER) RETURN NUMBER;
+END CustomerManagement;
+/
+CREATE OR REPLACE PACKAGE BODY CustomerManagement 
+AS
+    PROCEDURE AddCustomer(
+        p_customer_id IN NUMBER,
+        p_name        IN VARCHAR2,
+        p_dob         IN DATE,
+        p_balance     IN NUMBER
+    ) 
+    IS
+        v_exists NUMBER;
+    BEGIN
+        SELECT COUNT(*) INTO v_exists FROM Customers WHERE CustomerID=p_customer_id;
+        IF v_exists>0 THEN
+            DBMS_OUTPUT.PUT_LINE('ERROR: Customer ID already exists.');
+            RETURN;
+        END IF;
+        INSERT INTO Customers(CustomerID,Name,DOB,Balance,LastModified)
+        VALUES (p_customer_id,p_name,p_dob,p_balance,SYSDATE);
+        COMMIT;
+        DBMS_OUTPUT.PUT_LINE('Customer added: ' || p_name);
+    END AddCustomer;
+    PROCEDURE UpdateCustomerDetails(
+        p_customer_id IN NUMBER,
+        p_name        IN VARCHAR2,
+        p_balance     IN NUMBER
+    ) 
+    IS
+    BEGIN
+        UPDATE Customers
+        SET Name=p_name,Balance=p_balance
+        WHERE CustomerID=p_customer_id;
+        IF SQL%FOUND THEN
+            COMMIT;
+            DBMS_OUTPUT.PUT_LINE('Customer ' || p_customer_id || ' updated.');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('ERROR: Customer not found.');
+        END IF;
+    END UpdateCustomerDetails;
+    FUNCTION GetCustomerBalance(p_customer_id IN NUMBER) RETURN NUMBER IS
+        v_balance NUMBER;
+    BEGIN
+        SELECT Balance INTO v_balance FROM Customers WHERE CustomerID=p_customer_id;
+        RETURN v_balance;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RETURN -1;
+    END GetCustomerBalance;
+END CustomerManagement;
+/
+SET SERVEROUTPUT ON;
+BEGIN
+    CustomerManagement.AddCustomer(7,'Sneha Patel',TO_DATE('1998-02-14','YYYY-MM-DD'),3000);
+    CustomerManagement.UpdateCustomerDetails(7,'Sneha Patel Updated',3500);
+    DBMS_OUTPUT.PUT_LINE('Balance: ' || CustomerManagement.GetCustomerBalance(7));
+END;
+/
+
+--scenario-2
+
+CREATE OR REPLACE PACKAGE EmployeeManagement 
+AS
+    PROCEDURE HireEmployee
+    (
+        p_employee_id IN NUMBER,
+        p_name IN VARCHAR2,
+        p_position IN VARCHAR2,
+        p_salary IN NUMBER,
+        p_department IN VARCHAR2
+    );
+    PROCEDURE UpdateEmployeeDetails
+    (
+        p_employee_id IN NUMBER,
+        p_position IN VARCHAR2,
+        p_salary IN NUMBER
+    );
+    FUNCTION CalculateAnnualSalary(p_employee_id IN NUMBER) RETURN NUMBER;
+END EmployeeManagement;
+/
+CREATE OR REPLACE PACKAGE BODY EmployeeManagement 
+AS
+    PROCEDURE HireEmployee
+    (
+        p_employee_id IN NUMBER,
+        p_name IN VARCHAR2,
+        p_position IN VARCHAR2,
+        p_salary IN NUMBER,
+        p_department IN VARCHAR2
+    ) 
+    IS
+    BEGIN
+        INSERT INTO Employees(EmployeeID,Name,Position,Salary,Department,HireDate)
+        VALUES(p_employee_id,p_name,p_position,p_salary,p_department,SYSDATE);
+        COMMIT;
+        DBMS_OUTPUT.PUT_LINE('Employee hired: ' || p_name);
+    EXCEPTION
+        WHEN DUP_VAL_ON_INDEX THEN
+            DBMS_OUTPUT.PUT_LINE('ERROR: Employee ID already exists.');
+    END HireEmployee;
+    PROCEDURE UpdateEmployeeDetails
+    (
+        p_employee_id IN NUMBER,
+        p_position IN VARCHAR2,
+        p_salary IN NUMBER
+    ) 
+    IS
+    BEGIN
+        UPDATE Employees
+        SET Position=p_position,Salary=p_salary
+        WHERE EmployeeID=p_employee_id;
+        IF SQL%FOUND THEN
+            COMMIT;
+            DBMS_OUTPUT.PUT_LINE('Employee ' || p_employee_id || ' updated.');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('ERROR: Employee not found.');
+        END IF;
+    END UpdateEmployeeDetails;
+    FUNCTION CalculateAnnualSalary(p_employee_id IN NUMBER) RETURN NUMBER IS
+        v_monthly_salary NUMBER;
+    BEGIN
+        SELECT Salary INTO v_monthly_salary
+        FROM Employees
+        WHERE EmployeeID=p_employee_id;
+        RETURN v_monthly_salary * 12;
+    EXCEPTION
+        WHEN NO_DATA_FOUND THEN
+            RETURN -1;
+    END CalculateAnnualSalary;
+END EmployeeManagement;
+/
+SET SERVEROUTPUT ON;
+BEGIN
+    EmployeeManagement.HireEmployee(4,'David Lee','Tester',55000,'QA');
+    EmployeeManagement.UpdateEmployeeDetails(4,'Senior Tester',60000);
+    DBMS_OUTPUT.PUT_LINE('Annual Salary: ' || EmployeeManagement.CalculateAnnualSalary(4));
+END;
+/
+
+--scenario-3
+
+create or replace PACKAGE AccountOperation 
+AS
+   PROCEDURE OpenAccount
+   (
+       p_account_id in number,
+       p_customer_id in number,
+       p_account_type in VARCHAR2,
+       p_balance in number
+   );
+   PROCEDURE CloseAccount(p_account_id in number);
+   FUNCTION GetTotalBalance(p_customer_id in number) return number;
+end AccountOperation;
+/
+create or replace PACKAGE BODY AccountOperation
+AS
+   PROCEDURE OpenAccount
+   (
+       p_account_id in number,
+       p_customer_id in number,
+       p_account_type in VARCHAR2,
+       p_balance in number
+   )
+   is 
+   begin
+        insert into Accounts(AccountID,CustomerID,ACCOUNTTYPE,Balance,LASTMODIFIED)
+        values (p_account_id,p_customer_id,p_account_type,p_balance,sysdate);
+        commit;
+        DBMS_OUTPUT.PUT_LINE('Account ' || p_account_id || ' opened for Customer ' || p_customer_id);
+   exception
+        when DUP_VAL_ON_INDEX then
+           DBMS_OUTPUT.PUT_LINE('ERROR: Account ID already exists.');
+    end OpenAccount;
+    PROCEDURE CloseAccount(p_account_id in number)
+    IS
+    begin
+        delete from Accounts where ACCOUNTID=p_account_id;
+        if sql%found then
+            commit;
+            DBMS_OUTPUT.PUT_LINE('Account ' || p_account_id || ' closed.');
+        ELSE
+            DBMS_OUTPUT.PUT_LINE('ERROR: Account not found.');
+        end if;
+    end CloseAccount;
+    FUNCTION GetTotalBalance(p_customer_id in number) return number
+    IS
+      v_total number;
+    BEGIN
+        select nvl(sum(Balance),0) into v_total
+        from ACCOUNTS
+        where CustomerID=p_customer_id;
+        return v_total;
+    end GetTotalBalance;
+end AccountOperation;
+/
+set SERVEROUTPUT on;
+BEGIN
+    AccountOperation.openAccount(6,1,'Saving',2000);
+    DBMS_OUTPUT.PUT_LINE('Total Balnce for Customer 1:' || AccountOperation.GetTotalBalance(1));
+    delete from TRANSACTIONS where AccountID=6;
+    AccountOperation.CloseAccount(6);
+end;
+/
